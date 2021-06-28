@@ -12,14 +12,21 @@ variable "region" {
 // CREATE SNS TOPIC
 resource "aws_sns_topic" "requests" {
     name = "requests-topic"
+    provisioner "local-exec" {
+    command = "sh sns_subscription.sh"
+    environment = {
+      sns_arn = self.arn
+      sns_emails = "rm340169@fiap.com.br"
+    }
+  }
 }
 
-// CREATE EMAIL TOPIC SUBSCRIPTION
-resource "aws_sns_topic_subscription" "requests_email_target" {
-  topic_arn = "${aws_sns_topic.requests.arn}"
-  protocol  = "email"
-  endpoint  = "rm340169@fiap.com.br"
-}
+// CREATE EMAIL TOPIC SUBSCRIPTION (IT DID NOT WORK)
+# resource "aws_sns_topic_subscription" "requests_email_target" {
+#   topic_arn = "${aws_sns_topic.requests.arn}"
+#   protocol  = "email"
+#   endpoint  = "rm340169@fiap.com.br"
+# }
 
 // CREATE SQS QUEUE AND CONNECT WITH DLQ
 resource "aws_sqs_queue" "requests_queue" {
