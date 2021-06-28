@@ -1,2 +1,1 @@
-# dev-ops-challenge
-Final Challenge - DevOps on CloudOps
+# Final Challenge - DevOps on CloudOps
