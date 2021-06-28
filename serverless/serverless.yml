@@ -1,0 +1,21 @@
+
+service: challenge-serverless
+
+provider:
+  name: aws
+  runtime: python3.7
+
+stage: production
+functions:
+  create:
+    handler: create.handler
+    events:
+      - http:
+          path: create/{name}/{id}/{price}
+          method: post
+  sell:
+    handler: sell.handler
+    events:
+      - http:
+          path: sell/{id}/{customer}
+          method: post
