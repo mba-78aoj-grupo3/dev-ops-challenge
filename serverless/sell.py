@@ -1,16 +1,19 @@
 import json
+import boto3
 
 def handler(event, context):
-    bookId = event['pathParameters']['id'];
-    customerId = event['pathParameters']['customer'];
-    
-    body = {
-        "message": "Venda efetuada!"
-    }
+    body = event['body'];
+
+    client = boto3.client('sns');
+    client.publish(
+        TargetArn='arn',
+        Message=json.dumps({'default': body}),
+        MessageStructure='json'
+    );
 
     response = {
         "statusCode": 200,
-        "body": json.dumps(body)
+        "body": body
     }
 
     return response

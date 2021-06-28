@@ -1,23 +1,53 @@
 
 service: challenge-serverless
 
+
+package:
+  example:
+    - layer/**
+
+layers:
+  LayerDependecies:
+    path: layer
+    description: "requiremenets layer"
+
 provider:
   name: aws
   runtime: python3.7
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - "sns:Publish"
+      Resource:
+        - 'arn'
+    - Effect: 'Allow'
+      Action:
+        - "sqs:ReceiveMessage"
+      Resource:
+        - 'arn'
 
 stage: production
 functions:
   create:
     handler: create.handler
+    layers:
+      - {Ref: LayerDependeciesLambdaLayer}
     events:
       - http:
-          path: create/{name}/{id}/{price}
+          path: create
           method: post
           cors: true
   sell:
     handler: sell.handler
+    layers:
+      - {Ref: LayerDependeciesLambdaLayer}
     events:
       - http:
-          path: sell/{id}/{customer}
+          path: sell
           method: post
           cors: true
+  bucket:
+    handler: bucket.handler
+    events:
+13    - sqs: arn:aws:sqs:us-east-1:123456789012:queue1
