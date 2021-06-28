@@ -13,9 +13,11 @@ functions:
       - http:
           path: create/{name}/{id}/{price}
           method: post
+          cors: true
   sell:
     handler: sell.handler
     events:
       - http:
           path: sell/{id}/{customer}
           method: post
+          cors: true
