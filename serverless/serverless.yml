@@ -1,7 +1,6 @@
 
 service: challenge-serverless
 
-
 package:
   example:
     - layer/**
@@ -9,7 +8,7 @@ package:
 layers:
   LayerDependecies:
     path: layer
-    description: "requiremenets layer"
+    description: "requirements layer"
 
 provider:
   name: aws
@@ -20,12 +19,17 @@ provider:
       Action:
         - "sns:Publish"
       Resource:
-        - 'arn'
+        - 'arn:aws:sns:us-east-1:131167460192:requests-topic'
     - Effect: 'Allow'
       Action:
         - "sqs:ReceiveMessage"
       Resource:
-        - 'arn'
+        - 'arn:aws:sqs:us-east-1:131167460192:requests-queue'
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+      Resource:
+        - "arn:aws:s3:::final-challenge-bucket/*"
 
 stage: production
 functions:
@@ -50,4 +54,4 @@ functions:
   bucket:
     handler: bucket.handler
     events:
-13    - sqs: arn:aws:sqs:us-east-1:123456789012:queue1
+      - sqs: 'arn:aws:sqs:us-east-1:131167460192:requests-queue'

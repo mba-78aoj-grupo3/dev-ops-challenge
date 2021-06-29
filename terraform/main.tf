@@ -53,9 +53,9 @@ resource "aws_sns_topic_subscription" "requests_sqs_target" {
 
 // SQS POLICY
 resource "aws_sqs_queue_policy" "requests_queue_policy" {
-    queue_url = "${aws_sqs_queue.requests_queue.id}"
+  queue_url = "${aws_sqs_queue.requests_queue.id}"
 
-    policy = <<POLICY
+  policy = <<POLICY
 {
   "Version": "2012-10-17",
   "Id": "sqspolicy",
@@ -75,4 +75,15 @@ resource "aws_sqs_queue_policy" "requests_queue_policy" {
   ]
 }
 POLICY
+}
+
+// BUCKET FOR STATE AND FILES
+resource "aws_s3_bucket" "b" {
+  bucket = "final-challenge-bucket"
+  acl    = "private"
+
+  tags = {
+    Name        = "final-challenge-bucket"
+    Environment = "admin"
+  }
 }
