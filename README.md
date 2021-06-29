@@ -4,7 +4,7 @@
 
 ### Terraform
 
-1 - Antes de começar, garanta que você possui as credenciais corretas no seu arquivo `aws-credentials`.
+1 - Antes de começar, garanta que você possui as credenciais corretas no seu arquivo `~/.aws/credentials`.
 
 2 - O arquivo [main.tf](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/main/terraform/main.tf) contém as informações para o deploy do Terraform.
 
