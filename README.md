@@ -46,4 +46,18 @@ Antes de executar o serverless, é preciso adicionar dados do tópica e fila cri
 
 3 - Adicione o ARN da sua fila SQS, [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L57), para que o lambda receba o gatilho da fila.
 
-4 - Após isso, execute o comando `sls deplo`. Ao final você terá os endpoints para criar e vender os livros.
+4 - Após isso, execute o comando `sls deploy`. Ao final você terá os endpoints para criar e vender os livros.
+
+5 - Execute os comandos a seguir para testar o fluxo, adicionando o payload que preferir:
+
+    curl -H "Content-Type: application/json" -X POST -d '{"book_name": "Harry Potter", "book_id": 34577, "book_preco": 45.87}' https://ciotevw0ib.execute-api.us-east-1.amazonaws.com/dev/create
+    
+    curl -H "Content-Type: application/json" -X POST -d '{"book_id": 34577, "customer_id": 1234}' https://ciotevw0ib.execute-api.us-east-1.amazonaws.com/dev/sell
+    
+### Resultados
+
+1 - Após a execução do último passo, você deverá receber uma mensagem no seu e-mail cadastrado, com o payload enviado.
+
+2 - O seu bucket criado deverá conter um arquivo state do Terraform.
+
+3 - O bucket deverá também possuir duas pastas `create` e `sell`, e dentro delas um arquivo txt com o payload.
