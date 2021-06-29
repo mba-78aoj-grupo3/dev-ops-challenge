@@ -42,9 +42,9 @@ Antes de executar o serverless, é preciso adicionar dados do tópica e fila cri
 
 1 - Adicione o ARN do seu tópico SNS, [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L22), para permissão de publicar no tópico.
 
-2 - Adicione o ARN da sua fila SQS, [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L27), para permissão de receber mensagem.
+2 - Adicione o ARN da sua fila SQS (a principal, não a DLQ), [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L27), para permissão de receber mensagem.
 
-3 - Adicione o ARN da sua fila SQS, [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L57), para que o lambda receba o gatilho da fila.
+3 - Adicione o ARN da sua fila SQS (a principal, não a DLQ), [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L57), para que o lambda receba o gatilho da fila.
 
 4 - Após isso, execute o comando `sls deploy`. Ao final você terá os endpoints para criar e vender os livros.
 
