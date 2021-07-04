@@ -56,20 +56,24 @@ Os arquivos python presentes dentro dela, são mapeados para o exercício da seg
    
 Antes de executar o serverless, é preciso adicionar dados do tópica e fila criados no passo do Terraform.
 
-1 - Adicione o ARN do seu tópico SNS, [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L22), para permissão de publicar no tópico.
+1 - Crie uma pasta chamada layer com o comando `mkdir layer` no terminal, dentro da pasta serverless.
 
-2 - Adicione o ARN da sua fila SQS (a principal, não a DLQ), [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L27), para permissão de receber mensagem.
+2 - Execute o comando `pip3 install -r requirements.txt -t layer/` para que todas as dependências fiquem dentro desta pasta.
 
-3 - Adicione o ARN da sua fila SQS (a principal, não a DLQ), [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L57), para que o lambda receba o gatilho da fila.
+3 - Adicione o ARN do seu tópico SNS, [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L22), para permissão de publicar no tópico.
 
-4 - Adicione o ARN do seu tópico SNS, para a publicação dos dados no tópico, nos seguintes arquivos:
+4 - Adicione o ARN da sua fila SQS (a principal, não a DLQ), [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L27), para permissão de receber mensagem.
+
+5 - Adicione o ARN da sua fila SQS (a principal, não a DLQ), [aqui](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/86112c265692dec73a99a81986e08adfdec903bf/serverless/serverless.yml#L57), para que o lambda receba o gatilho da fila.
+
+6 - Adicione o ARN do seu tópico SNS, para a publicação dos dados no tópico, nos seguintes arquivos:
 
 - [create.py](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/8b3ff6e2585568b3bcd7013191ef880272a5bd8a/serverless/create.py#L9).
 - [sell.py](https://github.com/mba-78aoj-grupo3/dev-ops-challenge/blob/8b3ff6e2585568b3bcd7013191ef880272a5bd8a/serverless/sell.py#L9).
 
-5 - Após isso, execute o comando `sls deploy`. Ao final você terá os endpoints para criar e vender os livros.
+7 - Após isso, execute o comando `sls deploy`. Ao final você terá os endpoints para criar e vender os livros.
 
-6 - Execute os comandos a seguir para testar o fluxo, adicionando o payload que preferir:
+8 - Execute os comandos a seguir para testar o fluxo, adicionando o payload que preferir:
 
     curl -H "Content-Type: application/json" -X POST -d '{"book_name": "Harry Potter", "book_id": 34577, "book_preco": 45.87}' https://ciotevw0ib.execute-api.us-east-1.amazonaws.com/dev/create
     
