@@ -54,7 +54,7 @@ Os arquivos python presentes dentro dela, são mapeados para o exercício da seg
     2 - sell.py => Lambda2;
     3 - bucket.py => Lambda3.
    
-Antes de executar o serverless, é preciso adicionar dados do tópica e fila criados no passo do Terraform e adicionar a lib boto3 para uso do nosso código lambda.
+Antes de executar o serverless, é preciso adicionar dados do tópico e fila criados no passo do Terraform e adicionar a lib boto3 para uso do nosso código lambda.
 
 1 - Crie uma pasta chamada layer com o comando `mkdir layer` no terminal, dentro da pasta serverless.
 
